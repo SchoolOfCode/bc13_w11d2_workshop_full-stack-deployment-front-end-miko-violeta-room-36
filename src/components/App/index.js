@@ -22,7 +22,7 @@ function App() {
       setList(data.payload);
     }
     getShoppingList();
-  }, []);
+  }, [list]);
 
   async function addToList(newListItem) {
     //This function changes the state of the list by pushing the text from the input field in to the array.
@@ -54,25 +54,23 @@ function App() {
     setList(clearedList);
   }
 
+  
   async function tickItem(idOfTickedItem) {
-    
     setList((previous) => {
-      
       return previous.map((item) => {
-        if(item.id===idOfTickedItem){
+        if (item.id === idOfTickedItem) {
           const response = fetch(`${url}/items/${item.id}`, {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ completed: !list[item.id].completed }),
-    
-        })
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ completed: !list[item.id].completed }),
+          });
         }
-        
+
         return item.id !== idOfTickedItem
           ? item
           : { ...item, completed: !item.completed };
-        });
       });
+    });
     //  console.log(!list[0].completed)
   }
 
