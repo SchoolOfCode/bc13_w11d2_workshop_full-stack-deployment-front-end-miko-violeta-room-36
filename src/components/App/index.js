@@ -55,15 +55,19 @@ function App() {
   }
 
   async function tickItem(idOfTickedItem) {
-    const response = await fetch(`${url}/items/${idOfTickedItem}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ completed: !list[0].completed }),
-
-    })
+    
     setList((previous) => {
       
       return previous.map((item) => {
+        if(item.id===idOfTickedItem){
+          const response = fetch(`${url}/items/${item.id}`, {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ completed: !list[item.id].completed }),
+    
+        })
+        }
+        
         return item.id !== idOfTickedItem
           ? item
           : { ...item, completed: !item.completed };
