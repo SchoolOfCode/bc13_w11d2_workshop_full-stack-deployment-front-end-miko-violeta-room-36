@@ -62,7 +62,7 @@ function App() {
           const response = fetch(`${url}/items/${item.id}`, {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ completed: !list[item.id].completed }),
+            body: JSON.stringify({ item: item.item, completed: !item.completed }),
           });
         }
 
