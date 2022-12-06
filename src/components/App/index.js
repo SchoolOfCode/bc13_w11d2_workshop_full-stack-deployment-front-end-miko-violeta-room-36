@@ -60,8 +60,8 @@ function App() {
         return item.id !== idOfTickedItem
           ? item
           : { ...item, completed: !item.completed };
+        });
       });
-    });
   }
 
   return (
