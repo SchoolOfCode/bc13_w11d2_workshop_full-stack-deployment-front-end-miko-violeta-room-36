@@ -58,7 +58,7 @@ function App() {
     const response = await fetch(`${url}/items/${idOfTickedItem}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ completed: !list[idOfTickedItem].completed }),
+      body: JSON.stringify({ completed: !list[0].completed }),
 
     })
     setList((previous) => {
